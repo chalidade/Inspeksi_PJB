@@ -54,6 +54,111 @@
                   <td><input type="radio" name="audit5" value="1"></td>
                 </tr>
                 <tr>
+                  <td></td>
+                  <td colspan="3">
+                    <table style="font-size:12px;">
+                      <?php
+                      $permit =  $_SESSION['permit'];
+                      $lokasi = $_SESSION['lokasi'];
+                      ?>
+                      <?php
+                      if (in_array("Hot Work", $permit) || in_array("Isolasi", $permit) || in_array("Confined Space", $permit) || in_array("Vicinity", $permit) || in_array("Working at Height", $permit) || in_array("Digging", $permit) || in_array("Nothing", $permit) ) {
+                      ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value="Safety Helmet Welding">
+                        </td>
+                        <td> Safety Helmet </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value=" Safety Shoes">
+                        </td>
+                        <td>  Safety Shoes   </td>
+                      </tr>
+                      <?php
+                    } if (in_array("Hot Work", $permit) || in_array("Confined Space", $permit) || in_array("Working at Height", $permit)) {
+                       ?>
+                       <tr>
+                         <td>
+                           <input type="checkbox" name="rambu[]" value="Sarung Tangan">
+                         </td>
+                         <td>Sarung Tangan</td>
+                       </tr>
+                     <?php } if (in_array("Hot Work", $permit) || in_array("Vicinity", $permit) || in_array("Working at Height", $permit) ||  in_array("Near And Underwater", $permit) || in_array("Digging", $permit)) { ?>
+                       <tr>
+                         <td>
+                           <input type="checkbox" name="rambu[]" value="Ear Plug">
+                         </td>
+                         <td> Ear Plug   </td>
+                       </tr>
+                      <?php } if (in_array("Hot Work", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value=" Baju Tahan Panas ">
+                        </td>
+                        <td> Baju Tahan Panas    </td>
+                      </tr>
+                    <?php } if (in_array("Vicinity", $permit) || in_array("Working at Height", $permit) || in_array("Digging", $permit) || in_array("Confined Space", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value=" Masker">
+                        </td>
+                        <td>  Masker   </td>
+                      </tr>
+                    <?php } if (in_array("Working at Height", $permit) || in_array("Digging", $permit) || in_array("Confined Space", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value="Safety Googles ">
+                        </td>
+                        <td>  Safety Googles    </td>
+                      </tr>
+                    <?php }  if (in_array("Working at Height", $permit)) {?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value="Safety Belt ">
+                        </td>
+                        <td>  Safety Belt    </td>
+                      </tr>
+                    <?php } if (in_array("Working at Height", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value=" Safety Harness ">
+                        </td>
+                        <td>  Safety Harness    </td>
+                      </tr>
+                    <?php } if (in_array("Digging", $permit) || in_array("Vicinity", $permit) || in_array("Near And Underwater", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value="Sarung Tangan Karet">
+                        </td>
+                        <td>  Sarung Tangan Karet   </td>
+                      </tr>
+                    <?php } if (in_array("Near And Underwater", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value=" Perlengkapan Penyelam">
+                        </td>
+                        <td>  Perlengkapan Penyelam   </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value=" Gas Oksigen dan Breathing Aparatus ">
+                        </td>
+                        <td>  Gas Oksigen dan Breathing Aparatus    </td>
+                      </tr>
+                    <?php } if (in_array("Isolasi", $permit) ||  in_array("Nothing", $permit)) { ?>
+                      <tr>
+                        <td>
+                          <input type="checkbox" name="rambu[]" value="Safety Wear Pack ">
+                        </td>
+                        <td>  Safety Wear Pack    </td>
+                      </tr>
+                    <?php } ?>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
                   <td>6. </td>
                   <td>Peralatan kerja yang digunakan sesuai pekerjaan</td>
                   <td><input type="radio" name="audit6" value="0"> </td>
@@ -118,6 +223,61 @@
                   <td>Jumlah / penempatan Fire Watch sesuai dengan lokasi pekerjaan</td>
                   <td><input type="radio" name="audit16" value="0"> </td>
                   <td><input type="radio" name="audit16" value="1"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td colspan="4">
+                    <table style="font-size:12px;">
+                        <?php
+                        // echo $lokasi;
+                            if ($lokasi == "Turbin" || $lokasi == "TH (Transfer House) 2" ||  $lokasi == "TH (Transfer House) 3" ||  $lokasi == "TH (Transfer House) 4" ||  $lokasi == "TH (Transfer House) 5" ||  $lokasi == "Fly Ash") {
+                              for ($i=1; $i <= 5 ; $i++) {
+                            ?>
+                            <tr>
+                            <td> <input type="checkbox" name="lantai[]" value="1" style="margin-left:5px;"> </td>
+                            <td><font style="font-size:12px"> Lantai 1 </font></td>
+                            </tr>
+                            <?php
+                          }} else if($lokasi == "WTP" || $lokasi == "Tripper" ||  $lokasi == "Jetty" ) {
+                            ?>
+                            <tr>
+                            <td> <input type="checkbox" name="lantai[]" value="1" style="margin-left:5px;"> </td>
+                            <td><font style="font-size:12px"> Lantai 1 </font></td>
+                            </tr>
+                            <?php } else if ($lokasi == "Gedung Admin" || $lokasi == "SU (Ship Unloader)") {
+                              for ($i=1; $i <= 4 ; $i++) {
+                                ?>
+                                <tr>
+                                <td> <input type="checkbox" name="lantai[]" value="<?php echo $i; ?>" style="margin-left:5px;"> </td>
+                                <td><font style="font-size:12px"> Lantai <?php echo $i; ?> </font></td>
+                                </tr>
+                          <?php
+                        }} else if ($lokasi == "TH (Transfer House) 2" || $lokasi == "Kantor CHCB") {
+                          for ($i=1; $i <= 2 ; $i++) {
+                            ?>
+                            <tr>
+                            <td> <input type="checkbox" name="lantai[]" value="<?php echo $i; ?>" style="margin-left:5px;"> </td>
+                            <td><font style="font-size:12px"> Lantai <?php echo $i; ?> </font></td>
+                            </tr>
+                        <?php
+                      }} else if ($lokasi == "TT (Transfer Tower)") {
+                        for ($i=1; $i <= 3 ; $i++) {
+                          ?>
+                          <tr>
+                          <td> <input type="checkbox" name="lantai[]" value="<?php echo $i; ?>" style="margin-left:5px;"> </td>
+                          <td><font style="font-size:12px"> Lantai <?php echo $i; ?> </font></td>
+                          </tr>
+                      <?php
+                    }} else if ($lokasi == "Boiler") {
+                      for ($i=1; $i <= 9 ; $i++) {
+                       ?>
+                       <tr>
+                       <td> <input type="checkbox" name="lantai[]" value="<?php echo $i; ?>" style="margin-left:5px;"> </td>
+                       <td><font style="font-size:12px"> Lantai <?php echo $i; ?> </font></td>
+                       </tr>
+                    <?php }} ?>
+                    </table>
+                  </td>
                 </tr>
                 <tr>
                   <td>17. </td>

@@ -8,23 +8,28 @@ if ($page == "1") {
     $tgjawab  = $_POST['tgjawab'];
     $tanggal  = $_POST['tanggal'];
     $bidang   = $_POST['bidang'];
-    $observ   = mysqli_query($connect, "INSERT INTO `observation` (`id`, `tg_jawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `pekerja`) VALUES ('$idobserv', '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '');");
+    $observ   = mysqli_query($connect, "INSERT INTO `observation` (`id`, `tg_jawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `pekerja`, `dokumentasi`) VALUES ('$idobserv', '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '', '');");
     echo "<script>window.location = '../job_observation.php';</script>";
 
 } else if ($page == "2") {
-    $tglberlaku   = $_POST['date'];
-    $diminta      = $_POST['diminta'];
-    $pekerjaan    = $_POST['pekerjaan'];
-    $lokasi       = $_POST['lokasi'];
-    $dari         = $_POST['dari'];
-    $sampai       = $_POST['sampai'];
-    $wo           = $_POST['wo'];
-    $perusahaan   = $_POST['perusahaan'];
-    $permit       = $_POST['permit'];
-    $idobserv     = $_SESSION['idobserv'];
-    $update1      = mysqli_query($connect, "UPDATE `observation` SET `tglberlaku` = '$tglberlaku', `diminta` = '$diminta', `pekerjaan` = '$pekerjaan', `lokasi` = '$lokasi', `dari` = '$dari', `sampai` = '$sampai', `wo` = '$wo', `permit` = '$permit' WHERE `observation`.`id` = '$idobserv';");
+  $idobserv             = $_SESSION['idobserv'];
+  $tglberlaku           = $_POST['date'];
+  $diminta              = $_POST['diminta'];
+  $pekerjaan            = $_POST['pekerjaan'];
+  $lokasi               = $_POST['lokasi'];
+  $dari                 = $_POST['dari'];
+  $sampai               = $_POST['sampai'];
+  $wo                   = $_POST['wo'];
+  $perusahaan           = $_POST['perusahaan'];
+  $permit               = $_POST['permit'];
+  $_SESSION['permit']   = $permit;
+  $_SESSION['lokasi']   = $lokasi;
+  $idobserv             = $_SESSION['idobserv'];
+  $mit                  = json_encode($permit);
+  $update1              = mysqli_query($connect, "UPDATE `observation` SET `tglberlaku` = '$tglberlaku', `diminta` = '$diminta', `pekerjaan` = '$pekerjaan', `lokasi` = '$lokasi', `dari` = '$dari', `sampai` = '$sampai', `wo` = '$wo', `permit` = '$mit' WHERE `observation`.`id` = '$idobserv';");
     echo "<script>window.location = '../checklist_observation.php';</script>";
 } else if($page == "3") {
+
   $_SESSION['tta1']   = $_POST['tta1'];
   $_SESSION['tta2']   = $_POST['tta2'];
   $_SESSION['tta3']   = $_POST['tta3'];
@@ -48,12 +53,16 @@ if ($page == "1") {
   $_SESSION['tta21']   = $_POST['tta21'];
   $_SESSION['tta22']   = $_POST['tta22'];
 
-  $idcheck   = rand(10,1000).date('dmY');
-  $idobserv  = $_SESSION['idobserv'];
+  $idcheck        = rand(10,1000).date('dmY');
+  $idobserv       = $_SESSION['idobserv'];
 
-  $checklist = mysqli_query($connect, "INSERT INTO `checklist_observ` (`id_check`, `tta1`, `tta2`, `tta3`, `tta4`, `tta5`, `tta6`, `tta7`, `tta8`, `tta9`, `tta10`, `tta11`, `tta12`, `tta13`, `tta14`, `tta15`, `tta16`, `tta17`, `tta18`, `tta19`, `tta20`, `tta21`, `tta22`) VALUES ('$idcheck', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');");
-  $checkob  = mysqli_query($connect, "UPDATE `observation` SET `checklist` = '$idcheck' WHERE `observation`.`id` = '$idobserv';");
-
+  $lokasi         = json_encode($_POST['lantai']);
+  $apd            = json_encode($_POST['apd']);
+  $rambu          = json_encode($_POST['rambu']);
+  // echo $idcheck." ".$lokasi." ".$apd." ".$rambu." ";
+  $check_tambahan = mysqli_query($connect, "INSERT INTO `checklist_tambahan` (`id`, `apd`, `rambu`, `lokasi`) VALUES ('$idcheck', '$apd', '$rambu', '$lokasi');");
+  $checklist      = mysqli_query($connect, "INSERT INTO `checklist_observ` (`id_check`, `tta1`, `tta2`, `tta3`, `tta4`, `tta5`, `tta6`, `tta7`, `tta8`, `tta9`, `tta10`, `tta11`, `tta12`, `tta13`, `tta14`, `tta15`, `tta16`, `tta17`, `tta18`, `tta19`, `tta20`, `tta21`, `tta22`) VALUES ('$idcheck', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');");
+  $checkob        = mysqli_query($connect, "UPDATE `observation` SET `checklist` = '$idcheck' WHERE `observation`.`id` = '$idobserv';");
   for ($i=1; $i < 23; $i++) {
     $tta[$i] = $_SESSION['tta'.$i];
     $update =  mysqli_query($connect, "UPDATE `checklist_observ` SET `tta$i` = '$tta[$i]' WHERE `checklist_observ`.`id_check` = '$idcheck';");
@@ -74,6 +83,19 @@ if ($page == "1") {
       $tes  = mysqli_query($connect, "INSERT INTO `pekerja_observ` (`no`, `nama`, `skill`, `potensi`, `terlibat`, `id_check`) VALUES (NULL, '$nama[$i]', '$skill[$i]', '$potensi[$i]', '$terlibat[$i]', '$idcheck');");
     }
   }
-  echo "<script>window.location = '../index.php';</script>";
+  echo "<script>window.location = '../dokumentasi_observation.php';</script>";
+} else if ($page == 5) {
+  $idobserv     = $_SESSION['idobserv'];
+  $file         = basename($_FILES["file"]["name"]);
+  $target_dir   = "upload/";
+  $target_file  = $target_dir . basename($_FILES["file"]["name"]);
+  $uploadOk = 1;
+  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+        // echo "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
+    } else {
+        // echo "Sorry, there was an error uploading your file.";
+    }
+    $update   = mysqli_query($connect, "UPDATE `observation` SET `dokumentasi` = '$file' WHERE `observation`.`id` = '$idobserv';");
+    echo "<script>window.location = '../index.php';</script>";
 }
  ?>

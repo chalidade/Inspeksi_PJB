@@ -33,7 +33,24 @@
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%" for="lokasi">Di Lokasi (Unit / Daerah)
-                <input type="text" name="lokasi" id="lokasi" value="" class="form-control">
+                <select class="form-control" name="lokasi">
+                  <option value="Boiler">Boiler </option>
+                  <option value="Turbin">Turbin  </option>
+                  <option value="Kantor CHCB">Kantor CHCB </option>
+                  <option value="WTP">WTP </option>
+                  <option value="Tripper">Tripper </option>
+                  <option value="Jetty">Jetty</option>
+                  <option value="Gedung Admin">Gedung Admin </option>
+                  <option value="SU (Ship Unloader)">SU (Ship Unloader) </option>
+                  <option value="TH (Transfer House) 1">TH (Transfer House) 1 </option>
+                  <option value="TH (Transfer House) 2">TH (Transfer House) 2 </option>
+                  <option value="TH (Transfer House) 3">TH (Transfer House) 3 </option>
+                  <option value="TH (Transfer House) 4">TH (Transfer House) 4 </option>
+                  <option value="TH (Transfer House) 5">TH (Transfer House) 5 </option>
+                  <option value="TH (Transfer House) 6">TH (Transfer House) 6 </option>
+                  <option value="TT (Transfer Tower)">TT (Transfer Tower) </option>
+                  <option value="Fly Ash">Fly Ash </option>
+                </select>
               </label>
             </div>
           </div>
@@ -69,42 +86,42 @@
               <label style="width:100%" for="lokasi"> Working Permit Pekerjaan
               <table>
                 <tr>
-                  <td><input type="radio" name="permit" value="Hot Work"> </td>
+                  <td><input type="checkbox" name="permit" value="Hot Work"> </td>
                   <td>&nbsp; </td>
                   <td>Hot Work</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Isolasi"> </td>
+                  <td><input type="checkbox" name="permit" value="Isolasi"> </td>
                   <td>&nbsp; </td>
                   <td>Isolasi</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Confined Space"> </td>
+                  <td><input type="checkbox" name="permit" value="Confined Space"> </td>
                   <td>&nbsp; </td>
                   <td>Confined Space</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Vicinity"> </td>
+                  <td><input type="checkbox" name="permit" value="Vicinity"> </td>
                   <td>&nbsp; </td>
                   <td>Vicinity</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Working at Height"> </td>
+                  <td><input type="checkbox" name="permit" value="Working at Height"> </td>
                   <td>&nbsp; </td>
                   <td>Working at Height</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Near And Underwater"> </td>
+                  <td><input type="checkbox" name="permit" value="Near And Underwater"> </td>
                   <td>&nbsp; </td>
                   <td>Near And Underwater</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Digging"> </td>
+                  <td><input type="checkbox" name="permit" value="Digging"> </td>
                   <td>&nbsp; </td>
                   <td>Digging</td>
                 </tr>
                 <tr>
-                  <td><input type="radio" name="permit" value="Nothing"> </td>
+                  <td><input type="checkbox" name="permit" value="Nothing"> </td>
                   <td>&nbsp; </td>
                   <td>Nothing</td>
                 </tr>
