@@ -23,6 +23,8 @@ if ($page == "1") {
     $perusahan= $_POST['perusahaan'];
     $permit   = $_POST['permit'];
     $idaudit  = $_SESSION['idaudit'];
+    $_SESSION['permit']   = $permit;
+    $_SESSION['lokasi']   = $lokasi;
 
     $update1  = mysqli_query($connect, "UPDATE `audit` SET `tglberlaku` = '$berlaku', `diminta` = '$diminta', `pekerjaan` = '$pekerjaan', `lokasi` = '$lokasi', `dari` = '$dari', `sampai` = '$sampai', `wo` = '$wo', `permit` = '$permit' WHERE `audit`.`no` = '$idaudit';");
 
@@ -47,20 +49,24 @@ if ($page == "1") {
     // echo $_SESSION['tglberlaku']." ".$_SESSION['diminta']." ".$_SESSION['pekerjaan']." ".$_SESSION['lokasi']." ".$_SESSION['dari']." ".$_SESSION['sampai']." ".$_SESSION['wo']." ".$_SESSION['perusahaan']." ".$_SESSION['permit1']." ".$_SESSION['permit2']." ".$_SESSION['permit3']." ".$_SESSION['permit4']." ".$_SESSION['permit5']." ".$_SESSION['permit6']." ".$_SESSION['permit7']." ".$_SESSION['permit8'];
     echo "<script>window.location = '../checklist_audit.php';</script>";
 } else if($page == "3") {
-    $_SESSION['audit1']   = $_POST['audit1'];
-    $_SESSION['audit2']   = $_POST['audit2'];
-    $_SESSION['audit3']   = $_POST['audit3'];
-    $_SESSION['audit4']   = $_POST['audit4'];
-    $_SESSION['audit5']   = $_POST['audit5'];
-    $_SESSION['audit6']   = $_POST['audit6'];
-    $_SESSION['audit7']   = $_POST['audit7'];
-    $_SESSION['audit8']   = $_POST['audit8'];
-    $_SESSION['audit9']   = $_POST['audit9'];
-    $_SESSION['audit10']   = $_POST['audit10'];
-    $_SESSION['audit11']   = $_POST['audit11'];
-    $_SESSION['audit12']   = $_POST['audit12'];
-    $_SESSION['audit13']   = $_POST['audit13'];
-    $_SESSION['audit14']   = $_POST['audit14'];
+    $_SESSION['audit1']     = $_POST['audit1'];
+    $_SESSION['audit2']     = $_POST['audit2'];
+    $_SESSION['audit3']     = $_POST['audit3'];
+    $_SESSION['audit4']     = $_POST['audit4'];
+    $_SESSION['audit5']     = $_POST['audit5'];
+    $_SESSION['audit6']     = $_POST['audit6'];
+    $_SESSION['audit7']     = $_POST['audit7'];
+    $_SESSION['audit8']     = $_POST['audit8'];
+    $_SESSION['audit9']     = $_POST['audit9'];
+    $_SESSION['audit10']    = $_POST['audit10'];
+    $_SESSION['audit11']    = $_POST['audit11'];
+    $_SESSION['audit12']    = $_POST['audit12'];
+    $_SESSION['audit13']    = $_POST['audit13'];
+    $_SESSION['audit14']    = $_POST['audit14'];
+    $_SESSION['audit15']    = $_POST['audit15'];
+    $_SESSION['audit16']    = $_POST['audit16'];
+    $_SESSION['audit17']    = $_POST['audit17'];
+    $_SESSION['audit18']    = $_POST['audit18'];
 
     $idcheck  = rand(10,1000).date('dmY');
     $idaudit  = $_SESSION['idaudit'];
@@ -69,10 +75,11 @@ if ($page == "1") {
     $rambu          = json_encode($_POST['rambu']);
     // echo $idcheck." ".$lokasi." ".$apd." ".$rambu." ";
     $check_tambahan = mysqli_query($connect, "INSERT INTO `checklist_tambahan` (`id`, `apd`, `rambu`, `lokasi`) VALUES ('$idcheck', '$apd', '$rambu', '$lokasi');");
-    $check    = mysqli_query($connect, "INSERT INTO `checklist_audit` (`id`, `check1`, `check2`, `check3`, `check4`, `check5`, `check6`, `check7`, `check8`, `check9`, `check10`, `check11`, `check12`, `check13`, `check14`) VALUES ('$idcheck', '', '', '', '', '', '', '', '', '', '', '', '', '', '');");
+    $check    = mysqli_query($connect, "INSERT INTO `checklist_audit` (`id`, `check1`, `check2`, `check3`, `check4`, `check5`, `check6`, `check7`, `check8`, `check9`, `check10`, `check11`, `check12`, `check13`, `check14`, `check15`, `check16`, `check17`, `check18`) VALUES ('$idcheck', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');");
 
-    for ($i=1; $i < 15; $i++) {
+    for ($i=1; $i < 19; $i++) {
       $audit[$i] = $_SESSION['audit'.$i];
+      echo $audit[$i];
       $update =  mysqli_query($connect, "UPDATE `checklist_audit` SET `check$i` = '$audit[$i]' WHERE `checklist_audit`.`id` = '$idcheck';");
     }
 

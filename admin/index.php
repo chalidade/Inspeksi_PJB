@@ -85,7 +85,6 @@
 							<h3 class="content-title" style="font-size:12px;color:#000; text-align:center;margin-top:10px;">Notifikasi</h3>
 						</div>
 					</div>
-				</div>
 				<div class="row" style="margin-top:50px; padding:10px">
 					<div class="col-6">
 						<div class="content">

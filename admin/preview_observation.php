@@ -5,6 +5,7 @@ include "proses/koneksi.php";
   $data = mysqli_query($connect, "SELECT * FROM `observation` WHERE `id` = '$data' ");
   while ($row=mysqli_fetch_row($data))
     {
+      $id_pekerja = $row[13];
 ?>
 <!DOCTYPE html>
 <html>
@@ -56,13 +57,13 @@ include "proses/koneksi.php";
         <td>Untuk Melaksanakan</td>
         <td>:<?php echo $row[6]; ?></td>
         <td>Nomor WO</td>
-        <td colspan="3">:<?php echo $row[10]; ?> </td>
+        <td colspan="4">:<?php echo $row[10]; ?> </td>
       </tr>
       <tr>
         <td>Dilokasi (Unit Daerah)</td>
         <td>:<?php echo $row[7]; ?></td>
         <td>Perusahaan / Bidang</td>
-        <td colspan="3">: <?php echo $row[3]; ?></td>
+        <td colspan="4">: <?php echo $row[3]; ?></td>
       </tr>
     </table>
     <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;font-size:12px;border-collapse: collapse;border-top:none;">
@@ -605,76 +606,37 @@ include "proses/koneksi.php";
       <tr>
         <th>No</th>
         <th>Nama</th>
-        <th>Skill / Posisi</th>
-        <th>Ttd</th>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Skill / Posisi</th>
+        <th>Skill</th>
+        <th>Posisi</th>
         <th>Ttd</th>
       </tr>
+      <?php
+        $no = 1;
+        $pekerja    = mysqli_query($connect, "SELECT * FROM `pekerja_observ` WHERE `id_check` = '$id_pekerja'");
+        while ($dat = mysqli_fetch_row($pekerja)) {
+      ?>
       <tr>
-        <td style="text-align:center">1. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>6. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td style="text-align:center"><?php echo $no;$no++; ?>. </td>
+        <td><?php echo $dat[1]; ?></td>
+        <td><?php echo $dat[2]; ?></td>
+        <td><?php echo $dat[3]; ?></td>
+        <td>
+        <?php
+        if ($dat[4] == '1') {
+          echo "Terlibat";
+        } else {
+          echo "Tidak Terlibat";
+        }
+        ?>
+      </td>
       </tr>
-      <tr>
-        <td style="text-align:center">1. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>6. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td style="text-align:center">2. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>7. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td style="text-align:center">3. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>8. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td style="text-align:center">4. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>9. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td style="text-align:center">5. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>10. </td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
+      <?php
+        }
+       ?>
     </table>
-    <center>
-    <a href="acc_observation.php"><button type="button" name="button" style="margin-top:20px;border:solid thin #ed2c2f;padding:10px;background:#ed2c2f;color:#fff;width:60%">Kembali</button></a></center>
   </body>
+  <script type="text/javascript">
+    window.print();
+  </script>
 </html>
 <?php }} ?>

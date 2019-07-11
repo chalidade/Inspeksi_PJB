@@ -407,11 +407,91 @@
                         <?php } ?>
                         </td>
                       </tr>
+                      <tr>
+                        <td><?php echo $no1;$no1++; ?></td>
+                        <td>Fire watch log terisi dan termonitor</td>
+                        <td>
+                        <?php
+                        if($row1['15'] == 1) { ?>
+                          <input type="radio" checked>
+                        <?php } else { ?>
+                          <input type="radio">
+                        <?php } ?>
+                        </td>
+                        <td>
+                        <?php
+                        if($row1['15'] == 1) { ?>
+                          <input type="radio">
+                        <?php } else { ?>
+                          <input type="radio" checked>
+                        <?php } ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><?php echo $no1;$no1++; ?></td>
+                        <td>Jumlah/ penempatan Fire Watch sesuai dengan lokasi pekerjaan</td>
+                        <td>
+                        <?php
+                        if($row1['16'] == 1) { ?>
+                          <input type="radio" checked>
+                        <?php } else { ?>
+                          <input type="radio">
+                        <?php } ?>
+                        </td>
+                        <td>
+                        <?php
+                        if($row1['16'] == 1) { ?>
+                          <input type="radio">
+                        <?php } else { ?>
+                          <input type="radio" checked>
+                        <?php } ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><?php echo $no1;$no1++; ?></td>
+                        <td>Terdapat surat dari management untuk pekerjaan diatas jam normal</td>
+                        <td>
+                        <?php
+                        if($row1['17'] == 1) { ?>
+                          <input type="radio" checked>
+                        <?php } else { ?>
+                          <input type="radio">
+                        <?php } ?>
+                        </td>
+                        <td>
+                        <?php
+                        if($row1['17'] == 1) { ?>
+                          <input type="radio">
+                        <?php } else { ?>
+                          <input type="radio" checked>
+                        <?php } ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><?php echo $no1;$no1++; ?></td>
+                        <td>Emergency tools tersedia dan dalam keadaan baik</td>
+                        <td>
+                        <?php
+                        if($row1['18'] == 1) { ?>
+                          <input type="radio" checked>
+                        <?php } else { ?>
+                          <input type="radio">
+                        <?php } ?>
+                        </td>
+                        <td>
+                        <?php
+                        if($row1['18'] == 1) { ?>
+                          <input type="radio">
+                        <?php } else { ?>
+                          <input type="radio" checked>
+                        <?php } ?>
+                        </td>
+                      </tr>
                     <?php } ?>
                     </table>
                   </div>
                   <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <a href="preview_audit.php?id=audit&data=<?php echo $row[0]; ?>" class="btn btn-primary">Download</a>
                   </div>
                 </div>
               </div>

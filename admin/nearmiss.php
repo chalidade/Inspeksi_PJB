@@ -18,21 +18,21 @@
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%" for="uk">Lokasi
-                <input type="text" name="lokasi" id="uk" value="" class="form-control">
+                <input required type="text" name="lokasi" id="uk" value="" class="form-control">
               </label>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%">Unit
-                <input type="text" name="unit" value="" class="form-control">
+                <input required type="text" name="unit" value="" class="form-control">
               </label>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%">Status
-                <input type="text" name="status" value="" class="form-control">
+                <input required type="text" name="status" value="" class="form-control">
               </label>
             </div>
           </div>

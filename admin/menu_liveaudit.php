@@ -18,21 +18,21 @@
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%" for="uk">Penanggung Jawab
-                <input type="text" name="tgjawab" id="uk" value="" class="form-control">
+                <input required type="text" name="tgjawab" id="uk" value="" class="form-control">
               </label>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%">Tanggal
-                <input type="date" name="tanggal" value="" class="form-control">
+                <input required type="date" name="tanggal" value="" class="form-control">
               </label>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%">Bidang
-                <input type="text" name="bidang" value="" class="form-control">
+                <input required type="text" name="bidang" value="" class="form-control">
               </label>
             </div>
           </div>
