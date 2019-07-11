@@ -32,7 +32,7 @@
          ?>
         <div class="row" style="border:solid thin #d4d4d4;color:#000;margin-left:1px;margin-right:1px;font-size:12px;">
           <div class="col-8">
-          <a href="preview_audit.php?data=<?php echo $row[0]; ?>" style="color:#000;font-weight:500">  <font>Live Audit | <?php echo $row[1]; ?></font> </a>
+          <a href="preview_observation.php?data=<?php echo $row[0]; ?>" style="color:#000;font-weight:500">  <font>Live Audit | <?php echo $row[1]; ?></font> </a>
           </div>
           <div class="col-4">
             <?php echo $row[4]; ?>
@@ -52,7 +52,21 @@
            <?php echo $row[4]; ?>
          </div>
        </div>
-     <?php } ?>
+     <?php
+      }
+     $data    = mysqli_query($connect, "SELECT * FROM `nearmiss` WHERE `tanggal` = '$tanggal'");
+     while ($row=mysqli_fetch_row($data))
+       {
+      ?>
+      <div class="row" style="border:solid thin #d4d4d4;color:#000;margin-left:1px;margin-right:1px;font-size:12px;">
+        <div class="col-8">
+        <a href="data-nearmiss.php" style="color:#000;font-weight:500"> <font>Nearmiss | <?php echo $row[1]; ?></font> </a>
+        </div>
+        <div class="col-4">
+          <?php echo $row[2]; ?>
+        </div>
+      </div>
+    <?php } ?>
       <div class="row" style="margin-top:20px;">
         <div class="col-md-12">
           <a href="menu-laporan.php" type="button" style="width:100%;margin-top:10px;" name="button" class="btn btn-danger"> Kembali </a>
