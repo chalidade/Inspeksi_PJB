@@ -74,30 +74,17 @@
 							<h3 class="content-title" style="font-size:12px;color:#000; text-align:center;margin-top:10px;">User</h3>
 						</div>
 						<div class="col-6">
-						  <div class="content">
-						    <a href="notifikasi.php">
-						  		 <img class="content-image img-fluid d-block mx-auto" style="width:50%;" src="img/exclamation-mark.png" alt="">
-						      <div class="content-details fadeIn-bottom">
-						        <!-- <h3 class="content-title"  style="font-size:12px;">Logout </h3> -->
-						      </div>
-						    </a>
-						  </div>
-							<h3 class="content-title" style="font-size:12px;color:#000; text-align:center;margin-top:10px;">Notifikasi</h3>
+							<div class="content">
+								<a href="../index.php">
+									 <img class="content-image img-fluid d-block mx-auto" style="width:50%;" src="img/wall-clock.png" alt="">
+									<div class="content-details fadeIn-bottom">
+										<!-- <h3 class="content-title"  style="font-size:12px;">Logout </h3> -->
+									</div>
+								</a>
+							</div>
+							<h3 class="content-title" style="font-size:12px;color:#000; text-align:center;margin-top:10px;">Logout</h3>
 						</div>
 					</div>
-				<div class="row" style="margin-top:50px; padding:10px">
-					<div class="col-6">
-						<div class="content">
-							<a href="../index.php">
-								 <img class="content-image img-fluid d-block mx-auto" style="width:50%;" src="img/wall-clock.png" alt="">
-								<div class="content-details fadeIn-bottom">
-									<!-- <h3 class="content-title"  style="font-size:12px;">Logout </h3> -->
-								</div>
-							</a>
-						</div>
-						<h3 class="content-title" style="font-size:12px;color:#000; text-align:center;margin-top:10px;">Logout</h3>
-					</div>
-				</div>
 			</section>
 			<!-- End service Area -->
 		<?php } else { ?>
