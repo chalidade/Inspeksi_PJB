@@ -58,7 +58,7 @@
                   <td colspan="3">
                     <table style="font-size:12px;">
                       <?php
-                      $permit =  $_SESSION['permit'];
+                      $permit =  json_decode($_SESSION['permit']);
                       $lokasi = $_SESSION['lokasi'];
                       ?>
                       <?php

@@ -45,6 +45,13 @@
         </div>
         <div class="col-md-12">
           <div class="form-group">
+            <label style="width:100%" for="uk">Batas
+              <input required type="date" name="batas" id="uk" value="" class="form-control">
+            </label>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
             <label style="width:100%" class="form-control">Dokumentasi
               <input type="file" name="fileToUpload" value="" style="display:none">
             </label>

@@ -130,7 +130,7 @@
                     </table>
                   </div>
                   <div class="modal-footer">
-                    <a type="button" href="preview_nearmiss.php?id=<?php echo $row[0]; ?>" class="btn btn-primary">Download</a>
+                    <a type="button" target="_blank" href="preview_nearmiss.php?id=<?php echo $row[0]; ?>" class="btn btn-primary">Download</a>
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
       <?php } ?>
       <div class="row" style="margin-top:20px;">
         <div class="col-md-12">
-          <a href="menu-laporan.php" target="_blank" type="button" style="width:100%;margin-top:10px;" name="button" class="btn btn-danger"> Kembali </a>
+          <a href="menu-laporan.php" type="button" style="width:100%;margin-top:10px;" name="button" class="btn btn-danger"> Kembali </a>
         </div>
       </div>
       </div>

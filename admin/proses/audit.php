@@ -10,7 +10,7 @@ if ($page == "1") {
     $bidang   = $_POST['bidang'];
 
     // echo "$idaudit - $tgjawab - $tanggal - $bidang";
-    $insert = mysqli_query($connect, "INSERT INTO `audit` (`no`, `tgjawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `dokumentasi`, `tua`, `tuc`) VALUES ($idaudit, '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '', '', '');");
+    $insert = mysqli_query($connect, "INSERT INTO `audit` (`no`, `tgjawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `dokumentasi`, `tua`, `tuc`, `batas`) VALUES ($idaudit, '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '', '', '', '');");
     echo "<script>window.location = '../live_audit.php';</script>";
 } else if ($page == "2") {
     $berlaku  = $_POST['berlaku'];
@@ -71,6 +71,7 @@ if ($page == "1") {
   $file         = basename($_FILES["file"]["name"]);
   $tua          = $_POST['tua'];
   $tuc          = $_POST['tuc'];
+  $batas        = $_POST['batas'];
   $target_dir   = "upload/";
   $target_file  = $target_dir . basename($_FILES["file"]["name"]);
   $uploadOk = 1;
@@ -79,7 +80,7 @@ if ($page == "1") {
     } else {
         // echo "Sorry, there was an error uploading your file.";
     }
-    $update = mysqli_query($connect, "UPDATE `audit` SET `dokumentasi` = '$file', `tua` = '$tua',`tuc` = '$tuc' WHERE `audit`.`no` = '$idaudit';");
+    $update = mysqli_query($connect, "UPDATE `audit` SET `dokumentasi` = '$file', `tua` = '$tua', `tuc` = '$tuc', `batas` = '$batas' WHERE `audit`.`no` = '$idaudit';");
     echo "<script>alert('Data Audit Berhasil Ditambahkan');window.location = '../index.php';</script>";
 }
 

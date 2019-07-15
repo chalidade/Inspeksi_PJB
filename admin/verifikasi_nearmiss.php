@@ -71,7 +71,7 @@
         </div>
         <div class="col-md-12">
           <div class="form-group">
-            <a href="proses/upload/<?php echo $data[1]; ?>">
+            <a href="proses/upload/<?php echo $data[8]; ?>">
             <label style="width:100%" class="form-control">Dokumentasi</label>
             </a>
           </div>

@@ -71,8 +71,11 @@ while ($tangan= mysqli_fetch_array($b)) {
         </td>
         <td>
           <img src="proses/upload/<?php echo $tangan['dokumentasi']; ?>" alt="" style="width:350px;padding:10px">
-          <p style="text-align:left;padding:10px">Keterangan : <?php echo $tangan['keterangan']; ?></p>
         </td>
+      </tr>
+      <tr>
+        <td><p style="text-align:left;padding:10px">Keterangan : <?php echo $audit['keterangan']; ?></p></td>
+        <td><p style="text-align:left;padding:10px">Keterangan : <?php echo $tangan['keterangan']; ?></p></td>
       </tr>
     </table>
     <table width="100%" border="1" align="center" style="text-align:center; border:solid thin #000;font-size:12px;border-collapse: collapse;">

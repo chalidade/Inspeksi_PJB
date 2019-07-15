@@ -57,7 +57,7 @@ include "proses/koneksi.php";
               $date            = new DateTime($a);
               $date->modify('+1 day');
               $tanggal         = $date->format('Y-m-d');
-              $data    = mysqli_query($connect, "SELECT * FROM `audit` WHERE `tglberlaku` = '$tanggal'");
+              $data    = mysqli_query($connect, "SELECT * FROM `audit` WHERE `batas` = '$tanggal'");
               while ($row=mysqli_fetch_array($data))
                 {
                ?>
@@ -125,13 +125,13 @@ include "proses/koneksi.php";
                 <td>
                   <div class="" style="background:red;text-align:center;width:25px;position: absolute;top:25px;z-index: 9;right: 35px;border-radius: 200px;font-size: 11px;font-weight: 800;color: #fff;padding: 2px;height: 25px;">
                     <?php
-                    $b               = mysqli_query($connect, "SELECT count(no) FROM `audit` WHERE `tglberlaku` = '$tanggal'");
+                    $b               = mysqli_query($connect, "SELECT count(no) FROM `audit` WHERE `batas` = '$tanggal'");
                     while ($count    = mysqli_fetch_row($b)) {
                       $caudit        = $count[0];
-                      $c             = mysqli_query($connect, "SELECT count(id) FROM `observation` WHERE `tglberlaku` = '$tanggal'");
+                      $c             = mysqli_query($connect, "SELECT count(id) FROM `observation` WHERE `batas` = '$tanggal'");
                       while ($count1 = mysqli_fetch_row($c)) {
                       $cobserve      = $count1[0];
-                      $d             = mysqli_query($connect, "SELECT count(id) FROM `nearmiss` WHERE `tanggal` = '$tanggal'");
+                      $d             = mysqli_query($connect, "SELECT count(id) FROM `nearmiss` WHERE `batas` = '$tanggal'");
                       while ($count2 = mysqli_fetch_row($d)) {
                       $cnear         = $count2[0];
 

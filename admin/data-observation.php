@@ -572,7 +572,7 @@
                   <?php } ?>
                   </div>
                   <div class="modal-footer">
-                    <a href="preview_observation.php?data=<?php echo $row[0]; ?>"<button type="button" class="btn btn-primary">Download</button></a>
+                    <a  target="_blank" href="preview_observation.php?data=<?php echo $row[0]; ?>"<button type="button" class="btn btn-primary">Download</button></a>
                   </div>
                 </div>
               </div>

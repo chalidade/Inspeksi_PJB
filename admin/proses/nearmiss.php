@@ -10,13 +10,14 @@ if ($page == "1") {
     $bidang  = $_POST['bidang'];
     $idnear  = $_SESSION['idnear'] = rand(10,1000).date('dmY');
     // echo "$tgjawab - $tanggal - $bidang - $idnear";
-    $insert   = mysqli_query($connect, "INSERT INTO `nearmiss` (`id`, `tg_jawab`, `tanggal`, `bidang`, `lokasi`, `unit`, `status`, `keterangan`, `dokumentasi`) VALUES ('$idnear', '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '');");
+    $insert   = mysqli_query($connect, "INSERT INTO `nearmiss` (`id`, `tg_jawab`, `tanggal`, `bidang`, `lokasi`, `unit`, `status`, `keterangan`, `dokumentasi`, `batas`) VALUES ('$idnear', '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '','');");
     echo "<script>window.location = '../nearmiss.php';</script>";
 } else if ($page == "2") {
     $lokasi     = $_POST['lokasi'];
     $unit       = $_POST['unit'];
     $status     = $_POST['status'];
     $keterangan = $_POST['keterangan'];
+    $batas      = $_POST['batas'];
     // $dokumentasi= $_POST['dokumentasi'];
     $idnear     = $_SESSION['idnear'];
 
@@ -37,7 +38,7 @@ if ($page == "1") {
             // echo "Sorry, there was an error uploading your file.";
         }
     }
-    $update = mysqli_query($connect, "UPDATE `nearmiss` SET `lokasi` = '$lokasi', `unit` = '$unit', `status` = '$status', `keterangan` = '$keterangan', `dokumentasi` = '$dokumentasi' WHERE `nearmiss`.`id` = '$idnear';");
+    $update = mysqli_query($connect, "UPDATE `nearmiss` SET `batas` = '$batas',`lokasi` = '$lokasi', `unit` = '$unit', `status` = '$status', `keterangan` = '$keterangan', `dokumentasi` = '$dokumentasi' WHERE `nearmiss`.`id` = '$idnear';");
     // echo "$lokasi - $unit - $status - $keterangan - $dokumentasi";
     echo "<script>window.location = '../verifikasi_nearmiss.php';</script>";
 } else if($id == 'delete') {
