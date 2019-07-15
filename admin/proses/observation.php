@@ -8,7 +8,7 @@ if ($page == "1") {
     $tgjawab  = $_POST['tgjawab'];
     $tanggal  = $_POST['tanggal'];
     $bidang   = $_POST['bidang'];
-    $observ   = mysqli_query($connect, "INSERT INTO `observation` (`id`, `tg_jawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `pekerja`, `dokumentasi`) VALUES ('$idobserv', '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '', '');");
+    $observ   = mysqli_query($connect, "INSERT INTO `observation` (`id`, `tg_jawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `pekerja`, `dokumentasi`, `rekom`) VALUES ('$idobserv', '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '', '', '');");
     echo "<script>window.location = '../job_observation.php';</script>";
 
 } else if ($page == "2") {
@@ -86,6 +86,7 @@ if ($page == "1") {
   echo "<script>window.location = '../dokumentasi_observation.php';</script>";
 } else if ($page == 5) {
   $idobserv     = $_SESSION['idobserv'];
+  $rekom        = $_POST['rekom'];
   $file         = basename($_FILES["file"]["name"]);
   $target_dir   = "upload/";
   $target_file  = $target_dir . basename($_FILES["file"]["name"]);
@@ -95,7 +96,7 @@ if ($page == "1") {
     } else {
         // echo "Sorry, there was an error uploading your file.";
     }
-    $update   = mysqli_query($connect, "UPDATE `observation` SET `dokumentasi` = '$file' WHERE `observation`.`id` = '$idobserv';");
+    $update   = mysqli_query($connect, "UPDATE `observation` SET `dokumentasi` = '$file', `rekom` = '$rekom' WHERE `observation`.`id` = '$idobserv';");
     echo "<script>window.location = '../index.php';</script>";
 }
  ?>

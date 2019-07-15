@@ -5,7 +5,12 @@ include "proses/koneksi.php";
   $data = mysqli_query($connect, "SELECT * FROM `observation` WHERE `id` = '$data' ");
   while ($row=mysqli_fetch_row($data))
     {
-      $id_pekerja = $row[13];
+      $idcheck      = $row['12'];
+      $b            = mysqli_query($connect, "SELECT * FROM `checklist_tambahan` WHERE `id` = '$idcheck'");
+      while ($tamba = mysqli_fetch_array($b)) {
+      $id_pekerja   = $row[13];
+      $permit       = json_decode($row[11]);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +20,7 @@ include "proses/koneksi.php";
       td {vertical-align:top;}
 
     </style>
+        <link rel="stylesheet" href="css/bootstrap.css">
   </head>
   <body>
     <table width="100%" style="border:solid thin #000">
@@ -40,12 +46,12 @@ include "proses/koneksi.php";
         <td>: 1 dari 1</td>
       </tr>
     </table>
-    <table border="1" width="100%" align="center" style="text-align:left; font-size:12px; border:solid thin #000;border-top:none;border-collapse: collapse;">
+    <table border="1" width="100%" align="center" style="text-align:left; font-size:12px; border:solid thin #000; border-collapse: collapse;">
       <tr>
-        <th colspan="7" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Permintaan Izin Kerja</h3></th>
+        <th colspan="7" style="background:#d4d4d4;text-align:center;padding-left:10px;">Permintaan Izin Kerja</th>
       </tr>
       <tr>
-        <td width="15%">Diminta Oleh</td>
+        <td width="10%">Diminta Oleh</td>
         <td width="40%">: <?php echo $row[5]; ?></td>
         <td width="15%">Rencana Pekerjaan</td>
         <td width="5%">: Tgl</td>
@@ -66,24 +72,24 @@ include "proses/koneksi.php";
         <td colspan="4">: <?php echo $row[3]; ?></td>
       </tr>
     </table>
-    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;font-size:12px;border-collapse: collapse;border-top:none;">
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;font-size:12px;border-collapse: collapse;">
       <tr>
-        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Working Permit Pekerjaan</h3></th>
+        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;">Working Permit Pekerjaan</th>
       </tr>
       <tr>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Hot Work") { ?>
+            <?php if (in_array("Hot Work", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
           <?php } ?>
           </center>
         </th>
-        <th>HOT WORK</th>
+        <th style="width:20%">HOT WORK</th>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Confined Space") { ?>
+            <?php if (in_array("Confined Space", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -93,7 +99,7 @@ include "proses/koneksi.php";
         <th>CONFINED SPACE</th>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Working at Height") { ?>
+            <?php if (in_array("Working at Height", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -103,7 +109,7 @@ include "proses/koneksi.php";
         <th>WORKING AT HEIGHT</th>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Digging") { ?>
+            <?php if (in_array("Digging", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -115,7 +121,7 @@ include "proses/koneksi.php";
       <tr>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Isolasi") { ?>
+            <?php if (in_array("Isolasi", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -125,7 +131,7 @@ include "proses/koneksi.php";
         <th>ISOLASI</th>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Vicinity") { ?>
+            <?php if (in_array("Vicinity", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -135,7 +141,7 @@ include "proses/koneksi.php";
         <th>VICINITY</th>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Near & Underwater") { ?>
+            <?php if (in_array("Near & Underwater", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -145,7 +151,7 @@ include "proses/koneksi.php";
         <th>NEAR & UNDERWATER</th>
         <th width="3%">
           <center>
-            <?php if ($row['11'] == "Nothing") { ?>
+            <?php if (in_array("Nothing", $permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -155,17 +161,17 @@ include "proses/koneksi.php";
         <th>NOTHING</th>
       </tr>
     </table>
-    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;padding:10px;font-size:12px;border-top:none;border-collapse: collapse;">
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;padding:10px;font-size:12px;border-collapse: collapse;">
       <tr>
-        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Daftar Periksa dan Paraf Pemeriksa (Diisi oleh Bidang K3)</h3></th>
+        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;">Daftar Periksa dan Paraf Pemeriksa (Diisi oleh Bidang K3)</th>
       </tr>
       <tr style="text-align:center">
-        <td rowspan="2" style="vertical-align:middle">No</td>
-        <td rowspan="2" style="vertical-align:middle">Aktifitas</td>
-        <td colspan="2">Bidang K3</td>
-        <td rowspan="2" style="vertical-align:middle">No</td>
-        <td rowspan="2" style="vertical-align:middle">Aktifitas</td>
-        <td colspan="2">Bidang K3</td>
+        <td rowspan="2" style="vertical-align:middle;width:5%">No</td>
+        <td rowspan="2" style="vertical-align:middle;width:35%">Aktifitas</td>
+        <td colspan="2" style="width:10%">Bidang K3</td>
+        <td rowspan="2" style="vertical-align:middle;width:5%">No</td>
+        <td rowspan="2" style="vertical-align:middle;width:35%">Aktifitas</td>
+        <td colspan="2" style="width:10%">Bidang K3</td>
       </tr>
       <tr style="text-align:center">
         <td>Yes</td>
@@ -427,7 +433,23 @@ include "proses/koneksi.php";
         <?php } ?>
         </td>
         <td>18. </td>
-        <td>Jumlah Fire Watch sudah sesuai dengan pekerjaan pada lantai bertingkat </td>
+        <td>Jumlah Fire Watch sudah sesuai dengan pekerjaan pada lantai bertingkat
+          <br>
+          <font>
+            <b>
+              (
+            <?php
+            $lokasi = json_decode($tamba['lokasi']);
+            for ($i = 0; $i < count($lokasi) ; $i++) {
+              if ($lokasi[$i] != '') {
+                echo "Lantai ".$lokasi[$i].", ";
+              }
+            }
+            ?>
+              )
+            </b>
+          </font>
+        </td>
         <td style="text-align:center">
         <?php
         if($row1['18'] == 1) { ?>
@@ -447,7 +469,21 @@ include "proses/koneksi.php";
       </tr>
       <tr>
         <td style="text-align:center">8. </td>
-        <td>Checklist pemeriksa penggunaan APD sudah terisi</td>
+        <td>
+          Checklist pemeriksa penggunaan APD sudah terisi<br>
+          <font>
+            <b>
+              (
+            <?php
+            $apd = json_decode($tamba['apd']);
+            for ($i=0; $i < count($apd) ; $i++) {
+              echo $apd[$i].", ";
+            }
+            ?>
+              )
+            </b>
+          </font>
+        </td>
         <td style="text-align:center">
         <?php
         if($row1['8'] == 1) { ?>
@@ -561,7 +597,20 @@ include "proses/koneksi.php";
       </tr>
       <tr>
         <td style="text-align:center">11. </td>
-        <td>Diperlukan rambu peringatan bahaya disekitar pekerjaan</td>
+        <td>Diperlukan rambu peringatan bahaya disekitar pekerjaan<br>
+          <font>
+            <b>
+              (
+            <?php
+            $apd = json_decode($tamba['apd']);
+            for ($i=0; $i < count($apd) ; $i++) {
+              echo $apd[$i].", ";
+            }
+            ?>
+              )
+            </b>
+          </font>
+        </td>
         <td style="text-align:center">
         <?php
         if($row1['11'] == 1) { ?>
@@ -598,29 +647,54 @@ include "proses/koneksi.php";
         </td>
       </tr>
     </table>
-
-    <table width="100%" border="1" align="center" style="text-align:center; border:solid thin #000;font-size:12px;border-collapse: collapse;border-top:none;">
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;padding:10px;font-size:12px;border-collapse: collapse;">
       <tr>
-        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Daftar Periksa dan Paraf Pemeriksa (Diisi oleh Bidang K3)</h3></th>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">(Pihak Ke 3)</th>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">Rekomendasi Tambahan</th>
       </tr>
       <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Skill</th>
-        <th>Posisi</th>
-        <th>Ttd</th>
+        <td style="width:50%">
+          <div class="row container">
+            <div class="col-6">
+              <p style="margin-top:20px">Saya setuju untuk menjaga kondisi area kerja sesuai dengan ijin kerja ini dalam melaksanakan pekerjaan.</p>
+              <p style="margin-top:60px">Tanggal & jam :</p>
+            </div>
+            <div class="col-6">
+              <p style="margin-top:130px; text-align:center">(Nama & Ttd)</p>
+            </div>
+          </div>
+        </td>
+        <td style="width:50%">
+          <p style="padding:10px;"><?php echo $row[15]; ?></p>
+        </td>
       </tr>
+    </table>
+    <table width="100%" border="1" align="center" style="text-align:center; border:solid thin #000;font-size:12px;border-collapse: collapse;">
+      <tr>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px; width:50%">Dokumentasi</th>
+        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">Nama Pekerja Yang Terlibat</th>
+      </tr>
+      <tr>
+      <th rowspan="15" style="text-align:center">
+        <img src="proses/upload/<?php echo $row[14]; ?>" alt="" style="width:120px;padding:20px">
+      </th>
+      <th style="text-align:center;vertical-align:middle">No</th>
+      <th style="text-align:center;vertical-align:middle">Nama</th>
+      <th style="text-align:center;vertical-align:middle">Skill</th>
+      <th style="text-align:center;vertical-align:middle">Posisi</th>
+      <th style="text-align:center;vertical-align:middle">Ttd</th>
+      </tr>
+      <tr>
       <?php
         $no = 1;
         $pekerja    = mysqli_query($connect, "SELECT * FROM `pekerja_observ` WHERE `id_check` = '$id_pekerja'");
         while ($dat = mysqli_fetch_row($pekerja)) {
       ?>
-      <tr>
-        <td style="text-align:center"><?php echo $no;$no++; ?>. </td>
-        <td><?php echo $dat[1]; ?></td>
-        <td><?php echo $dat[2]; ?></td>
-        <td><?php echo $dat[3]; ?></td>
-        <td>
+        <td style="text-align:center;vertical-align:middle"><?php echo $no;$no++; ?>. </td>
+        <td style="vertical-align:middle"><?php echo $dat[1]; ?></td>
+        <td style="vertical-align:middle"><?php echo $dat[2]; ?></td>
+        <td style="vertical-align:middle"><?php echo $dat[3]; ?></td>
+        <td style="vertical-align:middle">
         <?php
         if ($dat[4] == '1') {
           echo "Terlibat";
@@ -634,9 +708,30 @@ include "proses/koneksi.php";
         }
        ?>
     </table>
+    <table width="100%" border="1" align="center" style="text-align:center; border:solid thin #000;font-size:12px;border-collapse: collapse;">
+      <tr>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">Tanda Tangan</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="row">
+          <div class="col-3">
+            <p style="margin-top:20px">Bidang K3</p>
+            <p style="margin-top:60px">Date & Signature</p>
+          </div>
+          <div class="col-6">
+          </div>
+          <div class="col-3">
+            <p style="margin-top:20px">Penanggung Jawab / Pengawas Pekerjaan</p>
+            <p style="margin-top:60px">Date & Signature</p>
+          </div>
+        </div>
+        </td>
+      </tr>
+    </table>
   </body>
   <script type="text/javascript">
     window.print();
   </script>
 </html>
-<?php }} ?>
+<?php }}} ?>

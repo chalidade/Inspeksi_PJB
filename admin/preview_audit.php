@@ -5,6 +5,9 @@ $no           = 1;
 $a            = mysqli_query($connect, "SELECT * FROM `audit` WHERE `no` = '$data'");
 while ($audit = mysqli_fetch_array($a)) {
 $idcheck      = $audit['checklist'];
+$b            = mysqli_query($connect, "SELECT * FROM `checklist_tambahan` WHERE `id` = '$idcheck'");
+while ($tamba = mysqli_fetch_array($b)) {
+       $permit= json_decode($audit['11']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,8 +15,8 @@ $idcheck      = $audit['checklist'];
     <title>Live Audit</title>
     <style media="screen">
       td {vertical-align:top;}
-
     </style>
+    <link rel="stylesheet" href="css/bootstrap.css">
   </head>
   <body>
     <table width="100%" style="border:solid thin #000">
@@ -39,13 +42,13 @@ $idcheck      = $audit['checklist'];
         <td>: 1 dari 1</td>
       </tr>
     </table>
-    <table border="1" width="100%" align="center" style="text-align:left; font-size:12px; border:solid thin #000;border-top:none;border-collapse: collapse;">
+    <table border="1" width="100%" align="center" style="text-align:left; font-size:12px; border:solid thin #000;border-collapse: collapse;">
       <tr>
-        <th colspan="7" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Permintaan Izin Kerja</h3></th>
+        <th colspan="7" style="background:#d4d4d4;text-align:center;padding-left:10px;">Permintaan Izin Kerja</th>
       </tr>
       <tr>
         <td width="15%">Diminta Oleh</td>
-        <td width="40%">: <?php echo $audit['diminta']; ?></td>
+        <td width="35%">: <?php echo $audit['diminta']; ?></td>
         <td width="15%">Rencana Pekerjaan</td>
         <td width="5%">: Tgl</td>
         <td width="10%">: <?php echo $audit['dari']; ?></td>
@@ -60,39 +63,39 @@ $idcheck      = $audit['checklist'];
       </tr>
       <tr>
         <td>Dilokasi (Unit Daerah)</td>
-        <td>: <?php echo $audit['lokasi']; ?></td>
         <td>Perusahaan / Bidang</td>
         <td colspan="4">: <?php echo $audit['bidang']; ?> </td>
+        <td>: <?php echo $audit['lokasi']; ?></td>
       </tr>
     </table>
-    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;font-size:12px;border-collapse: collapse;border-top:none;">
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;font-size:12px;border-collapse: collapse;">
       <tr>
-        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Working Permit Pekerjaan</h3></th>
+        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;">Working Permit Pekerjaan</th>
       </tr>
       <tr>
-        <th width="3%">
+        <th width="5%">
           <center>
-            <?php if ($audit['11'] == "Hot Work") { ?>
+            <?php if (in_array("Hot Work",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
           <?php } ?>
           </center>
         </th>
-        <th>HOT WORK</th>
-        <th width="3%">
+        <th width="20%">HOT WORK</th>
+        <th width="5%">
           <center>
-            <?php if ($audit['11'] == "Confined Space") { ?>
+            <?php if (in_array("Confined Space",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
           <?php } ?>
           </center>
         </th>
-        <th>CONFINED SPACE</th>
+        <th width="20%">CONFINED SPACE</th>
         <th width="3%">
           <center>
-            <?php if ($audit['11'] == "Working at Height") { ?>
+            <?php if (in_array("Working at Height",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -102,7 +105,7 @@ $idcheck      = $audit['checklist'];
         <th>WORKING AT HEIGHT</th>
         <th width="3%">
           <center>
-            <?php if ($audit['11'] == "Digging") { ?>
+            <?php if (in_array("Digging",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -114,7 +117,7 @@ $idcheck      = $audit['checklist'];
       <tr>
         <th width="3%">
           <center>
-            <?php if ($audit['11'] == "Isolasi") { ?>
+            <?php if (in_array("Isolasi",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -124,7 +127,7 @@ $idcheck      = $audit['checklist'];
         <th>ISOLASI</th>
         <th width="3%">
           <center>
-            <?php if ($audit['11'] == "Vicinity") { ?>
+            <?php if (in_array("Vicinity",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -134,7 +137,7 @@ $idcheck      = $audit['checklist'];
         <th>VICINITY</th>
         <th width="3%">
           <center>
-            <?php if ($audit['11'] == "Near & Underwater") { ?>
+            <?php if (in_array("Near & Underwater",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -144,7 +147,7 @@ $idcheck      = $audit['checklist'];
         <th>NEAR & UNDERWATER</th>
         <th width="3%">
           <center>
-            <?php if ($audit['11'] == "Nothing") { ?>
+            <?php if (in_array("Nothing",$permit)) { ?>
               <input type="checkbox" checked name="" value="">
             <?php } else { ?>
             <input type="checkbox" name="" value="">
@@ -154,17 +157,17 @@ $idcheck      = $audit['checklist'];
         <th>NOTHING</th>
       </tr>
     </table>
-    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;padding:10px;font-size:12px;border-top:none;border-collapse: collapse;">
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;padding:10px;font-size:12px;border-collapse: collapse;">
       <tr>
-        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Daftar Periksa dan Paraf Pemeriksa (Diisi oleh Bidang K3)</h3></th>
+        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;">Daftar Periksa dan Paraf Pemeriksa (Diisi oleh Bidang K3)</th>
       </tr>
       <tr style="text-align:center">
-        <td rowspan="2" style="vertical-align:middle">No</td>
-        <td rowspan="2" style="vertical-align:middle">Aktifitas</td>
-        <td colspan="2">Bidang K3</td>
-        <td rowspan="2" style="vertical-align:middle">No</td>
-        <td rowspan="2" style="vertical-align:middle">Aktifitas</td>
-        <td colspan="2">Bidang K3</td>
+        <td rowspan="2" style="vertical-align:middle;width:4%;">No</td>
+        <td rowspan="2" style="vertical-align:middle;width:32%;">Aktifitas</td>
+        <td colspan="2" style="width:14%;">Bidang K3</td>
+        <td rowspan="2" style="vertical-align:middle;width:4%;">No</td>
+        <td rowspan="2" style="vertical-align:middle;width:32%;">Aktifitas</td>
+        <td colspan="2" style="width:14%;">Bidang K3</td>
       </tr>
       <tr style="text-align:center">
         <td>Yes</td>
@@ -363,7 +366,21 @@ $idcheck      = $audit['checklist'];
       </tr>
       <tr>
         <td style="text-align:center">5</td>
-        <td style="padding-left:20px;">APD yang digunakan pekerja sesuai pekerjaan</td>
+        <td style="padding-left:20px;">
+          APD yang digunakan pekerja sesuai pekerjaan<br>
+          <font>
+            <b>
+              (
+            <?php
+            $apd = json_decode($tamba['apd']);
+            for ($i=0; $i < count($apd) ; $i++) {
+              echo $apd[$i].", ";
+            }
+            ?>
+              )
+            </b>
+          </font>
+        </td>
         <td style="text-align:center">
           <?php
           if ($checklist['check5'] == '1') {
@@ -477,7 +494,23 @@ $idcheck      = $audit['checklist'];
         <?php }  ?>
         </td>
         <td style="text-align:center">16</td>
-        <td style="padding-left:20px;">Jumlah/ penempatan Fire Watch sesuai dengan lokasi pekerjaan</td>
+        <td style="padding-left:20px;">
+          Jumlah/ penempatan Fire Watch sesuai dengan lokasi pekerjaan<br>
+          <font>
+            <b>
+              (
+            <?php
+            $lokasi = json_decode($tamba['lokasi']);
+            for ($i = 0; $i < count($lokasi) ; $i++) {
+              if ($lokasi[$i] != '') {
+                echo "Lantai ".$lokasi[$i].", ";
+              }
+            }
+            ?>
+              )
+            </b>
+          </font>
+        </td>
         <td style="text-align:center">
           <?php
           if ($checklist['check16'] == '1') {
@@ -593,27 +626,68 @@ $idcheck      = $audit['checklist'];
       </tr>
     <?php } ?>
     </table>
-
-    <!-- <table width="100%" border="1" align="center" style="text-align:center; border:solid thin #000;font-size:12px;border-collapse: collapse;border-top:none;">
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;padding:10px;font-size:12px;border-collapse: collapse;">
       <tr>
-        <th colspan="8" style="background:#d4d4d4;text-align:center;padding-left:10px;"><h3>Daftar Periksa dan Paraf Pemeriksa (Diisi oleh Bidang K3)</h3></th>
+        <th style="background:#d4d4d4;text-align:center;width:50%">Temuan Unsafe Action</th>
+        <th style="background:#d4d4d4;text-align:center;width:50%">Temuan Unsafe Condition</th>
       </tr>
       <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Skill</th>
-        <th>Posisi</th>
-        <th>Ttd</th>
+        <td style="text-align:center;width:50%">
+          <p style="height:160px"><?php echo $audit['14']; ?></p>
+        </td>
+        <td style="text-align:center;width:50%">
+          <p style="height:160px"><?php echo $audit['15']; ?></p>
+        </td>
       </tr>
-
+    </table>
+    <table width="100%" border="1" align="center" style="text-align:left; border:solid thin #000;font-size:12px;border-collapse: collapse;">
       <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">Dokumentasi</th>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">Pekerjaan di Stop</th>
       </tr>
-    </table> -->
-  <?php } ?>
+      <tr>
+        <td style="text-align:center;width:50%">
+          <img src="proses/upload/<?php echo $audit['13']; ?>" style="width:350px;padding:10px" alt="">
+        </td>
+        <td style="width:50%">
+          <div class="row" style="padding:5px;width:100%;vertical-align:top">
+            <div class="col-md-6">
+              Tanggal :
+            </div>
+            <div class="col-md-6">
+              Jam :
+            </div>
+          </div>
+          <div class="row" style="padding:10px;">
+            <div class="col-md-12">
+              Alasan :
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" border="1" align="center" style="text-align:center; border:solid thin #000;font-size:12px;border-collapse: collapse;">
+      <tr>
+        <th style="background:#d4d4d4;text-align:center;padding-left:10px;width:50%">Tanda Tangan</th>
+      </tr>
+      <tr>
+        <td>
+          <div class="row">
+          <div class="col-3">
+            <p style="margin-top:20px">Bidang K3</p>
+            <p style="margin-top:60px">Date & Signature</p>
+          </div>
+          <div class="col-6">
+          </div>
+          <div class="col-3">
+            <p style="margin-top:20px">Penanggung Jawab / Pengawas Pekerjaan</p>
+            <p style="margin-top:60px">Date & Signature</p>
+          </div>
+        </div>
+        </td>
+      </tr>
+    </table>
+  <?php }} ?>
   </body>
   <script type="text/javascript">
     window.print();

@@ -86,7 +86,7 @@
                       </tr>
                       <tr>
                         <td>Dokumentasi</td>
-                        <td>: <a href="proses/upload/<?php echo $row[8]; ?>">View</a></td>
+                        <td>: <a target="_blank" href="proses/upload/<?php echo $row[8]; ?>">View</a></td>
                       </tr>
                       <tr>
                         <td>Status</td>
@@ -124,13 +124,13 @@
                       </tr>
                       <tr>
                         <td>Dokumentasi</td>
-                        <td>: <a href="proses/upload/<?php echo $dat[1]; ?>">View</a></td>
+                        <td>: <a target="_blank" href="proses/upload/<?php echo $dat[1]; ?>">View</a></td>
                       </tr>
                     <?php }} ?>
                     </table>
                   </div>
                   <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+                    <a type="button" href="preview_nearmiss.php?id=<?php echo $row[0]; ?>" class="btn btn-primary">Download</a>
                   </div>
                 </div>
               </div>
@@ -144,7 +144,7 @@
       <?php } ?>
       <div class="row" style="margin-top:20px;">
         <div class="col-md-12">
-          <a href="menu-laporan.php" type="button" style="width:100%;margin-top:10px;" name="button" class="btn btn-danger"> Kembali </a>
+          <a href="menu-laporan.php" target="_blank" type="button" style="width:100%;margin-top:10px;" name="button" class="btn btn-danger"> Kembali </a>
         </div>
       </div>
       </div>

@@ -10,7 +10,7 @@ if ($page == "1") {
     $bidang   = $_POST['bidang'];
 
     // echo "$idaudit - $tgjawab - $tanggal - $bidang";
-    $insert = mysqli_query($connect, "INSERT INTO `audit` (`no`, `tgjawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `dokumentasi`) VALUES ($idaudit, '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '');");
+    $insert = mysqli_query($connect, "INSERT INTO `audit` (`no`, `tgjawab`, `tanggal`, `bidang`, `tglberlaku`, `diminta`, `pekerjaan`, `lokasi`, `dari`, `sampai`, `wo`, `permit`, `checklist`, `dokumentasi`, `tua`, `tuc`) VALUES ($idaudit, '$tgjawab', '$tanggal', '$bidang', '', '', '', '', '', '', '', '', '', '', '', '');");
     echo "<script>window.location = '../live_audit.php';</script>";
 } else if ($page == "2") {
     $berlaku  = $_POST['berlaku'];
@@ -21,32 +21,13 @@ if ($page == "1") {
     $sampai   = $_POST['sampai'];
     $wo       = $_POST['wo'];
     $perusahan= $_POST['perusahaan'];
-    $permit   = $_POST['permit'];
+    $permit   = json_encode($_POST['permit']);
     $idaudit  = $_SESSION['idaudit'];
     $_SESSION['permit']   = $permit;
     $_SESSION['lokasi']   = $lokasi;
 
     $update1  = mysqli_query($connect, "UPDATE `audit` SET `tglberlaku` = '$berlaku', `diminta` = '$diminta', `pekerjaan` = '$pekerjaan', `lokasi` = '$lokasi', `dari` = '$dari', `sampai` = '$sampai', `wo` = '$wo', `permit` = '$permit' WHERE `audit`.`no` = '$idaudit';");
 
-    // $_SESSION['tglberlaku'] = $_POST['date'];
-    // $_SESSION['diminta']    = $_POST['diminta'];
-    // $_SESSION['pekerjaan']  = $_POST['pekerjaan'];
-    // $_SESSION['lokasi']     = $_POST['lokasi'];
-    // $_SESSION['dari']       = $_POST['dari'];
-    // $_SESSION['sampai']     = $_POST['sampai'];
-    // $_SESSION['wo']         = $_POST['wo'];
-    // $_SESSION['perusahaan'] = $_POST['perusahaan'];
-    // $_SESSION['permit']     = $_POST['permit'];
-    // $_SESSION['permit1']    = $_POST['permit1'];
-    // $_SESSION['permit2']    = $_POST['permit2'];
-    // $_SESSION['permit3']    = $_POST['permit3'];
-    // $_SESSION['permit4']    = $_POST['permit4'];
-    // $_SESSION['permit5']    = $_POST['permit5'];
-    // $_SESSION['permit6']    = $_POST['permit6'];
-    // $_SESSION['permit7']    = $_POST['permit7'];
-    // $_SESSION['permit8']    = $_POST['permit8'];
-
-    // echo $_SESSION['tglberlaku']." ".$_SESSION['diminta']." ".$_SESSION['pekerjaan']." ".$_SESSION['lokasi']." ".$_SESSION['dari']." ".$_SESSION['sampai']." ".$_SESSION['wo']." ".$_SESSION['perusahaan']." ".$_SESSION['permit1']." ".$_SESSION['permit2']." ".$_SESSION['permit3']." ".$_SESSION['permit4']." ".$_SESSION['permit5']." ".$_SESSION['permit6']." ".$_SESSION['permit7']." ".$_SESSION['permit8'];
     echo "<script>window.location = '../checklist_audit.php';</script>";
 } else if($page == "3") {
     $_SESSION['audit1']     = $_POST['audit1'];
@@ -86,8 +67,10 @@ if ($page == "1") {
     $update2 = mysqli_query($connect, "UPDATE `audit` SET `checklist` = '$idcheck' WHERE `audit`.`no` = '$idaudit';");
     echo "<script>window.location = '../dokumentasi_audit.php';</script>";
 } else if($page == "4") {
-  $idaudit     = $_SESSION['idaudit'];
+  $idaudit      = $_SESSION['idaudit'];
   $file         = basename($_FILES["file"]["name"]);
+  $tua          = $_POST['tua'];
+  $tuc          = $_POST['tuc'];
   $target_dir   = "upload/";
   $target_file  = $target_dir . basename($_FILES["file"]["name"]);
   $uploadOk = 1;
@@ -96,7 +79,7 @@ if ($page == "1") {
     } else {
         // echo "Sorry, there was an error uploading your file.";
     }
-    $update = mysqli_query($connect, "UPDATE `audit` SET `dokumentasi` = '$file' WHERE `audit`.`no` = '$idaudit';");
+    $update = mysqli_query($connect, "UPDATE `audit` SET `dokumentasi` = '$file', `tua` = '$tua',`tuc` = '$tuc' WHERE `audit`.`no` = '$idaudit';");
     echo "<script>alert('Data Audit Berhasil Ditambahkan');window.location = '../index.php';</script>";
 }
 

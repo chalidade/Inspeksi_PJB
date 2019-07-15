@@ -234,8 +234,8 @@
                               for ($i=1; $i <= 5 ; $i++) {
                             ?>
                             <tr>
-                            <td> <input type="checkbox" name="lantai[]" value="1" style="margin-left:5px;"> </td>
-                            <td><font style="font-size:12px"> Lantai 1 </font></td>
+                            <td> <input type="checkbox" name="lantai[]" value="<?php echo $i; ?>" style="margin-left:5px;"> </td>
+                            <td><font style="font-size:12px"> Lantai <?php echo $i; ?> </font></td>
                             </tr>
                             <?php
                           }} else if($lokasi == "WTP" || $lokasi == "Tripper" ||  $lokasi == "Jetty" ) {
