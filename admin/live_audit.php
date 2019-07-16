@@ -47,7 +47,6 @@
                   <option value="TH (Transfer House) 3">TH (Transfer House) 3 </option>
                   <option value="TH (Transfer House) 4">TH (Transfer House) 4 </option>
                   <option value="TH (Transfer House) 5">TH (Transfer House) 5 </option>
-                  <option value="TH (Transfer House) 6">TH (Transfer House) 6 </option>
                   <option value="TT (Transfer Tower)">TT (Transfer Tower) </option>
                   <option value="Fly Ash">Fly Ash </option>
                 </select>

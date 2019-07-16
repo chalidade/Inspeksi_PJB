@@ -34,7 +34,7 @@
 			<div class="wrap-login100 p-t-50 p-b-90">
 				<form action="admin/proses/login.php" class="login100-form validate-form flex-sb flex-w" method="POST">
 					<span class="login100-form-title p-b-51">
-						<img src="images/logo.jpeg" alt="" style="width:100px;margin:auto;">
+						<img src="images/logo.png" alt="" style="width:100px;margin:auto;">
 						<p>Login your Account</p>
 					</span>
 

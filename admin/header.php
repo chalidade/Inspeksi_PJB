@@ -27,9 +27,9 @@ include "proses/koneksi.php";
     <link rel="stylesheet" href="css/linearicons.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/swiper.css">
@@ -117,7 +117,7 @@ include "proses/koneksi.php";
           <div class="header-top d-flex justify-content-between align-items-center">
             <table>
               <tr>
-                <td><a href="index.php"> <img src="img/logo.png" alt="" style="width:60px;margin-top: 12px;"></td>
+                <td><a href="index.php"> <img src="../images/logo.png" alt="" style="width:60px;margin-top: 12px;"></td>
                 <td>
                   <h4 class="logo" style="float:right;margin-top:10px;margin-left:10px;text-shadow: 0px 1px 1px #fbfa5f;">
                     <font style="color:#cd402f">Pembangkit</font><font style="color:#0f4e9c"> Jawa Bali</font></h4></a>

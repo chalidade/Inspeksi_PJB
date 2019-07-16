@@ -31,7 +31,7 @@
           <div class="col-md-12">
             <div class="form-group">
               <label style="width:100%" for="lokasi">Di Lokasi (Unit / Daerah)
-                <select class="form-control" name="lokasi">
+                <select required class="form-control" name="lokasi">
                   <option value="Boiler">Boiler </option>
                   <option value="Turbin">Turbin  </option>
                   <option value="Kantor CHCB">Kantor CHCB </option>
@@ -45,7 +45,6 @@
                   <option value="TH (Transfer House) 3">TH (Transfer House) 3 </option>
                   <option value="TH (Transfer House) 4">TH (Transfer House) 4 </option>
                   <option value="TH (Transfer House) 5">TH (Transfer House) 5 </option>
-                  <option value="TH (Transfer House) 6">TH (Transfer House) 6 </option>
                   <option value="TT (Transfer Tower)">TT (Transfer Tower) </option>
                   <option value="Fly Ash">Fly Ash </option>
                 </select>

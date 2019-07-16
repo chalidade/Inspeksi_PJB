@@ -11,21 +11,21 @@
           <div class="col-md-12">
             <center>
             <label style="width:100%">Rekomendasi Tambahan
-              <textarea name="rekom" value="" class="form-control" style="height:200px"></textarea>
+              <textarea required name="rekom" value="" class="form-control" style="height:200px"></textarea>
             </label>
           </center>
           </div>
           <div class="col-md-12">
             <center>
             <label style="width:100%">Deadline
-              <input type="date" name="batas" value="" class="form-control">
+              <input required type="date" name="batas" value="" class="form-control">
             </label>
           </center>
           </div>
           <div class="col-md-12">
             <center>
             <label for="dokumentasi" style="width:100%">
-              <input style="width:92%" type="file" name="file" value="" class="form-control">
+              <input required style="width:100%" type="file" name="file" value="" class="form-control">
             </label>
           </center>
           </div>
